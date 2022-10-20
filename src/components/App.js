@@ -6,13 +6,13 @@ import { getFormUrl } from "../apiManager/services/formatterServices";
 
 const App =({src})=>{
     const [isFormSubmitted,setIsFormsubmitted] = useState(false);
-    const message = document.querySelector('formsflow-wc').getAttribute('message');
-    console.log(message)
+    const [message,setMessage] = useState('');
     const [url ,setUrl] =useState('');
     useEffect(()=>{
-        console.log("new url")
-
+        const newMessage = document.querySelector('formsflow-wc').getAttribute('message');
+        console.log("message",newMessage)
         const newUrl = document.querySelector('formsflow-wc').getAttribute('url');
+        setMessage(newMessage);
         setUrl(newUrl);
     },[src])
    const handleSubmit = (data)=>{
@@ -22,7 +22,7 @@ const App =({src})=>{
     const formUrl = getFormUrl(formId,submissionId);
     const formData = {
         formId,formUrl,submissionId
-    }
+    };
     publicApplicationCreate(formData);
    } 
    console.log("form submitted",isFormSubmitted)
@@ -40,9 +40,8 @@ const App =({src})=>{
              }}
             /> ): <div className="text-center pt-5">
             <h1>{message}</h1>
-            <p>saved successfully</p>
           </div>}
         </div>
-    )
-}
+    );
+};
 export default App;
