@@ -7,6 +7,8 @@ import { getFormUrl } from "../apiManager/services/formatterServices";
 const App =({src})=>{
     const [url ,setUrl] =useState('');
     useEffect(()=>{
+        console.log("new url")
+
         const newUrl = document.querySelector('formsflow-wc').getAttribute('url');
         setUrl(newUrl);
     },[src])
@@ -26,6 +28,8 @@ const App =({src})=>{
              onSubmit={(data)=>{
                 handleSubmit(data);
              }}
+             options = {{noAlerts : true,submitMessage:""}}
+            
              onFormError={(error)=>{
                  console.log("error",error)
              }}
