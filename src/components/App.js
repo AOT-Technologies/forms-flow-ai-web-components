@@ -10,7 +10,6 @@ const App =({src})=>{
     const [url ,setUrl] =useState('');
     useEffect(()=>{
         const newMessage = document.querySelector('formsflow-wc').getAttribute('message');
-        console.log("message",newMessage)
         const newUrl = document.querySelector('formsflow-wc').getAttribute('url');
         setMessage(newMessage);
         setUrl(newUrl);
@@ -19,13 +18,13 @@ const App =({src})=>{
     setIsFormsubmitted(true)
     const formId = data.form;
     const submissionId = data._id;
-    const formUrl = getFormUrl(formId,submissionId);
+    const formUrl = `https://forms3.aot-technologies.com/form/${formId}/submission/${submissionId}`
+    const webFormUrl = `https://app3.aot-technologies.com/form/${formId}/submission/${submissionId}`
     const formData = {
-        formId,formUrl,submissionId
+        formId,formUrl,submissionId,webFormUrl
     };
     publicApplicationCreate(formData);
    } 
-   console.log("form submitted",isFormSubmitted)
     return(
         <div className="container">
             {!isFormSubmitted ? (<Form 
