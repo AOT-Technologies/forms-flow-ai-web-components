@@ -5,3 +5,4 @@ export const getFormUrl = (formUrl,submissionUrl)=>{
   .replace('<submission_id>',submissionUrl);
   return url;
 }
+
