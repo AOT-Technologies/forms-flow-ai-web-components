@@ -8,7 +8,6 @@ import App from "./components/App";
 const index = ({url})=>{
   return (
     <div >
-    <h1>Web component</h1>
     <App src={url}/>
   </div>
   )
@@ -18,3 +17,9 @@ index.propTypes = {
 };
 
 customElements.define("formsflow-wc", reactToWebComponent(index, React, ReactDOM));
+ReactDOM.render(
+  <React.StrictMode>
+      <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
