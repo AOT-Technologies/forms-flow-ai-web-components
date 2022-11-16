@@ -1,9 +1,17 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Form } from "react-formio";
-import { publicApplicationCreate } from "../apiManager/services/appService";
+import { fetchRoles, publicApplicationCreate } from "../apiManager/services/appService";
+import { initKeycloak } from "../services/UserServices";
 
 const App =({src})=>{
+    let logout = useRef(null)
+    console.log("keycloak")
+    const fetchUserRoles = ()=>{
+        console.log("called")
+        fetchRoles()
+    }
+    
     const [isFormSubmitted,setIsFormsubmitted] = useState(false);
     const [message,setMessage] = useState('');
     const [webApiUrl ,setWebApiUrl] =useState('');
@@ -16,6 +24,8 @@ const App =({src})=>{
         setWebApiUrl(apiUrl);
         setUrl(newUrl);
     },[src])
+
+   
    const handleSubmit = (data)=>{
     setIsFormsubmitted(true)
     const formId = data.form;
@@ -30,7 +40,10 @@ const App =({src})=>{
    } 
     return(
         <div className="container">
-            {!isFormSubmitted ? (<Form 
+            hoi
+            <button className="btn btn-success" onClick={()=> fetchUserRoles()}>fetch roles</button>
+            <button className="btn btn-primary" onClick={()=> logout.current = initKeycloak()}>click me</button>
+            {/* {!isFormSubmitted ? (<Form 
              src={url}
              onSubmit={(data)=>{
                 handleSubmit(data);
@@ -42,7 +55,7 @@ const App =({src})=>{
              }}
             /> ): <div className="text-center pt-5">
             <h1>{message}</h1>
-          </div>}
+          </div>} */}
         </div>
     );
 };
