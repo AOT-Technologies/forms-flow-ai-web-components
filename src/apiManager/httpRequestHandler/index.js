@@ -4,5 +4,5 @@ export const httpPOSTRequest = (url,data)=>{
 }
 
 export const httpGETRequest = (url,data)=>{
-    axios.get(url,data)
+   return axios.get(url,data)
 }

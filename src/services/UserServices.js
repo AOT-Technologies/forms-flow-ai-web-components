@@ -23,6 +23,7 @@ export const initKeycloak = (done) => {
             console.log("autnenticated");
             console.log("authenticated aanu",authenticated);
             console.log("token",KeycloakData.token)
+            localStorage.setItem('authToken',KeycloakData?.token)
     }else{
         alert("not logged")
         console.log("not authenticated!");

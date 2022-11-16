@@ -3,15 +3,20 @@ import { useEffect, useRef, useState } from "react";
 import { Form } from "react-formio";
 import { fetchRoles, publicApplicationCreate } from "../apiManager/services/appService";
 import { initKeycloak } from "../services/UserServices";
+import RenderForms from "./RenderForms";
 
 const App =({src})=>{
+    const [form,setForm] = useState([])
+    const [callForms,setCallForms] = useState(false)
     let logout = useRef(null)
     console.log("keycloak")
     const fetchUserRoles = ()=>{
-        console.log("called")
-        fetchRoles()
+        fetchRoles((res)=>{
+            console.log("response callback")
+            setForm(res.data)
+        })
     }
-    
+    console.log("forms",form)
     const [isFormSubmitted,setIsFormsubmitted] = useState(false);
     const [message,setMessage] = useState('');
     const [webApiUrl ,setWebApiUrl] =useState('');
@@ -40,9 +45,11 @@ const App =({src})=>{
    } 
     return(
         <div className="container">
-            hoi
-            <button className="btn btn-success" onClick={()=> fetchUserRoles()}>fetch roles</button>
-            <button className="btn btn-primary" onClick={()=> logout.current = initKeycloak()}>click me</button>
+            
+            <button className="btn btn-success mt-5" onClick={()=> fetchUserRoles()}>fetch roles</button>
+            <button className="btn btn-primary ml-5 m-5" onClick={()=> logout.current = initKeycloak()}>get keykloack token</button>
+            <button className="btn btn-danger ml-5 mt-5" onClick={()=> setCallForms(true)}>Call forms</button>
+             {callForms?<RenderForms/> : <>NO forms</>}
             {/* {!isFormSubmitted ? (<Form 
              src={url}
              onSubmit={(data)=>{
