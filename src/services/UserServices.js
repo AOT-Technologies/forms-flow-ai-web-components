@@ -1,14 +1,20 @@
 import Keycloak from "keycloak-js";
+// let keycloakData ;
 
-const keycloakConfig = {
-  url: "https://iam.aot-technologies.com/auth",
-  realm: "forms-flow-mahagony",
-  clientId: "forms-flow-web",
-};
+// // export const initApplication =(keycloakData)=>{
+// //     keycloakData =keycloakData
+// // }
+// console.log("keycloak data",keycloakData)
+// const keycloakConfig = {
+    // url: "https://iam.aot-technologies.com/auth",
+    // realm: "forms-flow-mahagony",
+    // clientId: "forms-flow-web",
+//   };
 
+
+
+export const initKeycloak = (keycloakConfig,done) => {
 const KeycloakData = new Keycloak(keycloakConfig);
-
-export const initKeycloak = (done) => {
   console.log("here")
   KeycloakData.init({
     onLoad: "check-sso",
@@ -24,6 +30,7 @@ export const initKeycloak = (done) => {
             console.log("authenticated aanu",authenticated);
             console.log("token",KeycloakData.token)
             localStorage.setItem('authToken',KeycloakData?.token)
+            done()
     }else{
         alert("not logged")
         console.log("not authenticated!");
@@ -32,6 +39,5 @@ export const initKeycloak = (done) => {
   })
 };
 
-export const getToken = () => KeycloakData?.token;
 
 
