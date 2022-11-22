@@ -34,39 +34,9 @@ const App = ({ src }) => {
 
 
 
-//   console.log("call forms",callForms)
-
-//   const handleSubmit = (data) => {
-//     setIsFormsubmitted(true);
-//     const formId = data.form;
-//     const submissionId = data._id;
-//     const webUrl = `${webApiUrl}/public/application/create`;
-//     const formUrl = `https://forms3.aot-technologies.com/form/${formId}/submission/${submissionId}`;
-//     const webFormUrl = `https://app3.aot-technologies.com/form/${formId}/submission/${submissionId}`;
-//     const formData = {
-//       formId,
-//       formUrl,
-//       submissionId,
-//       webFormUrl,
-//     };
-//     publicApplicationCreate(webUrl, formData);
-//   };
   return (
     <div className="container">
       {callForms ? <RenderForms /> : <>Loading ....</>}
-      {/* {!isFormSubmitted ? (<Form 
-             src={url}
-             onSubmit={(data)=>{
-                handleSubmit(data);
-             }}
-             options = {{noAlerts : true}}
-            
-             onFormError={(error)=>{
-                 console.log("error",error)
-             }}
-            /> ): <div className="text-center pt-5">
-            <h1>{message}</h1>
-          </div>} */}
     </div>
   );
 };
