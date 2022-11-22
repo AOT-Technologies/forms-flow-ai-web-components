@@ -1,8 +1,9 @@
 import { httpGETRequest, httpPOSTRequest } from "../httpRequestHandler";
 import { API } from "../endpoints";
 
-export const publicApplicationCreate = (url,data,...rest)=>{
-    return  httpPOSTRequest(url,data);
+export const publicApplicationCreate = (data)=>{
+    const url = "https://app2.aot-technologies.com/api/application/create"
+    return  httpPOSTRequest(url,data,{headers: {"Authorization" : `Bearer ${localStorage.getItem('authToken')}`}});
 };
 
 export const fetchRoles = (callback)=>{
@@ -18,3 +19,9 @@ export const getForms = (url,callback)=>{
         callback(res)
     })
 }
+
+export const formSubmission = (url,data,callback)=>{
+    httpPOSTRequest(url,data,{headers: {"x-jwt-token" : localStorage.getItem('formioToken')}}).then((res)=>{
+        callback(res);
+    });
+}   

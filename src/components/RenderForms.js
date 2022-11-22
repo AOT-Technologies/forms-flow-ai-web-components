@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Form } from "react-formio";
-import { getForms, publicApplicationCreate } from '../apiManager/services/appService';
+import { formSubmission, getForms, publicApplicationCreate } from '../apiManager/services/appService';
 
 function RenderForms() {
   const [formUrl,setFormUrl] = useState('');
@@ -8,29 +8,33 @@ function RenderForms() {
   const [isFormSubmitted, setIsFormsubmitted] = useState(false);
   const [message, setMessage] = useState("");
   const [webApiUrl, setWebApiUrl] = useState("");
-  const [url, setUrl] = useState("");
 
   useEffect(()=>{
     setFormUrl(document.querySelector('formsflow-wc').getAttribute('url'));
+    setMessage(document.querySelector('formsflow-wc').getAttribute('message'));
     getForms(document.querySelector('formsflow-wc').getAttribute('url'),(res)=>{
       setFormData(res.data);
     });
   },[]);
 
   const handleSubmit = (data) => {
-    setIsFormsubmitted(true);
-    const formId = data.form;
-    const submissionId = data._id;
-    const webUrl = `${webApiUrl}/public/application/create`;
-    const formUrl = `https://app2.aot-technologies.com/formio/form/${formId}/submission/${submissionId}`;
-    const webFormUrl = `https://app2.aot-technologies.com/form/${formId}/submission/${submissionId}`;
-    const formData = {
-      formId,
-      formUrl,
-      submissionId,
-      webFormUrl,
-    };
-    publicApplicationCreate(webUrl, formData);
+    const url = `https://app2.aot-technologies.com/formio/form/${formData._id}/submission`
+    formSubmission(url,data,(res)=>{
+      const formId = res.data.form;
+      const submissionId = res.data._id;
+      const webUrl = `${webApiUrl}/public/application/create`;
+      const formUrl = `https://app2.aot-technologies.com/formio/form/${formId}/submission/${submissionId}`;
+      const webFormUrl = `https://app2.aot-technologies.com/form/${formId}/submission/${submissionId}`;
+      const formData = {
+        formId,
+        formUrl,
+        submissionId,
+        webFormUrl,
+      };
+      setIsFormsubmitted(true);
+      publicApplicationCreate(formData);
+    })
+   
   };
   return (
     <>
@@ -39,7 +43,6 @@ function RenderForms() {
       form={formData}
       url={formUrl}
       onSubmit={(data)=>{
-        console.log("data sbmit",data)
        handleSubmit(data);
     }}
     options = {{noAlerts : true}}
