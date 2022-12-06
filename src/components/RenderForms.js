@@ -1,30 +1,50 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { Form } from "react-formio";
-import { formSubmission, getForms, publicApplicationCreate } from '../apiManager/services/appService';
+import {
+  formSubmission,
+  getForms,
+  publicApplicationCreate,
+} from "../apiManager/services/appService";
 
 function RenderForms() {
-  const [formUrl,setFormUrl] = useState('');
-  const [formData,setFormData] = useState([]);
+  const [formId, setFormId] = useState("");
+  const [formData, setFormData] = useState([]);
   const [isFormSubmitted, setIsFormsubmitted] = useState(false);
   const [message, setMessage] = useState("");
-  const [webApiUrl, setWebApiUrl] = useState("");
+  const [formioUrl, setFormioUrl] = useState(null);
+  // const [webApiUrl, setWebApiUrl] = useState("");
+  const [keyCloakData, setKeyCloakData] = useState(null);
 
-  useEffect(()=>{
-    setFormUrl(document.querySelector('formsflow-wc').getAttribute('url'));
-    setMessage(document.querySelector('formsflow-wc').getAttribute('message'));
-    getForms(document.querySelector('formsflow-wc').getAttribute('url'),(res)=>{
-      setFormData(res.data);
-    });
-  },[]);
+  useEffect(() => {
+    setMessage(document.querySelector("formsflow-wc").getAttribute("message"));
+    setKeyCloakData(
+      JSON.parse(
+        document.querySelector("formsflow-wc").getAttribute("keycloakConfig")
+      )
+    );
+    setFormId(document.querySelector("formsflow-wc").getAttribute("formId"));
+  }, []);
+
+  useEffect(() => {
+    setFormioUrl(`${keyCloakData?.formioUrl}/${formId}`);
+    keyCloakData &&
+      getForms(`${keyCloakData?.formioUrl}/${formId}`, (res) => {
+        setFormData(res.data);
+      });
+  }, [keyCloakData, formId]);
 
   const handleSubmit = (data) => {
-    const url = `https://app2.aot-technologies.com/formio/form/${formData._id}/submission`
-    formSubmission(url,data,(res)=>{
+    // For form submission
+    const submissionUrl = `${keyCloakData.formioUrl}/${formId}/submission`;
+    // For submission api
+    formSubmission(submissionUrl, data, (res) => {
       const formId = res.data.form;
       const submissionId = res.data._id;
-      const webUrl = `${webApiUrl}/public/application/create`;
-      const formUrl = `https://app2.aot-technologies.com/formio/form/${formId}/submission/${submissionId}`;
-      const webFormUrl = `https://app2.aot-technologies.com/form/${formId}/submission/${submissionId}`;
+      // Public application create url
+      // const webUrl = `${keyCloakData.webBaseUrl}/public/application/create`;
+      // Form submission url for application create api
+      const formUrl = `${keyCloakData.formioUrl}/${formId}/submission/${submissionId}`;
+      const webFormUrl = `${keyCloakData.webBaseUrl}/submission/${submissionId}`;
       const formData = {
         formId,
         formUrl,
@@ -32,30 +52,32 @@ function RenderForms() {
         webFormUrl,
       };
       setIsFormsubmitted(true);
-      publicApplicationCreate(formData);
-    })
-   
+      // API for creating application
+      const applicationCreateUrl = `${keyCloakData.webBaseUrl}/api/application/create`;
+      publicApplicationCreate(applicationCreateUrl, formData);
+    });
   };
   return (
     <>
-    {
-      !isFormSubmitted ? <Form
-      form={formData}
-      url={formUrl}
-      onSubmit={(data)=>{
-       handleSubmit(data);
-    }}
-    options = {{noAlerts : true}}
-    onFormError={(error)=>{
-        console.log("error",error)
-    }} 
-    />
-    : <div className="text-center pt-5">
-    <h1>{message}</h1>
-  </div>
-    } 
+      {!isFormSubmitted ? (
+        <Form
+          form={formData}
+          url={formioUrl}
+          onSubmit={(data) => {
+            handleSubmit(data);
+          }}
+          options={{ noAlerts: true }}
+          onFormError={(error) => {
+            console.log("error", error);
+          }}
+        />
+      ) : (
+        <div className="text-center pt-5">
+          <h1>{message}</h1>
+        </div>
+      )}
     </>
   );
-};
+}
 
 export default RenderForms;

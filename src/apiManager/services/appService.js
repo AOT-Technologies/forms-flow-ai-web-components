@@ -1,8 +1,7 @@
 import { httpGETRequest, httpPOSTRequest } from "../httpRequestHandler";
 import { API } from "../endpoints";
 
-export const publicApplicationCreate = (data)=>{
-    const url = "https://app2.aot-technologies.com/api/application/create"
+export const publicApplicationCreate = (url,data)=>{
     return  httpPOSTRequest(url,data,{headers: {"Authorization" : `Bearer ${localStorage.getItem('authToken')}`}});
 };
 

@@ -1,6 +1,11 @@
 import Keycloak from "keycloak-js";
 
-export const initKeycloak = (keycloakConfig,done) => {
+export const initKeycloak = (url,realm,clientId,done) => {
+ let keycloakConfig ={
+    url,
+    realm,
+    clientId
+  }
 const KeycloakData = new Keycloak(keycloakConfig);
   KeycloakData.init({
     onLoad: "check-sso",
