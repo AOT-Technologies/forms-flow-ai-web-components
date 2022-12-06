@@ -1,23 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import reactToWebComponent from "react-to-webcomponent";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import App from "./components/App";
 
-
-const index = ({url})=>{
-  
+const index = ({ url }) => {
   return (
-    <div >
-    <App src={url}/>
-  </div>
-  )
-}
+    <div>
+      <App src={url} />
+    </div>
+  );
+};
 index.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
-customElements.define("formsflow-wc", reactToWebComponent(index, React, ReactDOM));
+customElements.define(
+  "formsflow-wc",
+  reactToWebComponent(index, React, ReactDOM)
+);
 // ReactDOM.render(
 //   <React.StrictMode>
 //       <App />
