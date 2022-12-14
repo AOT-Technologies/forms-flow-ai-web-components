@@ -6,6 +6,7 @@ export const initKeycloak = (url,realm,clientId,done) => {
     realm,
     clientId
   }
+  console.log("config",keycloakConfig)
 const KeycloakData = new Keycloak(keycloakConfig);
   KeycloakData.init({
     onLoad: "check-sso",
@@ -14,7 +15,6 @@ const KeycloakData = new Keycloak(keycloakConfig);
     window.location.origin + "/silent-check-sso.html",
     pkceMethod: "S256",
     checkLoginIframe: false,
-    
   }).then((authenticated)=>{
     if(authenticated){
             localStorage.setItem('authToken',KeycloakData?.token)
@@ -23,7 +23,7 @@ const KeycloakData = new Keycloak(keycloakConfig);
         alert("not logged")
         KeycloakData.login()
     }
-  })
+  }).catch(err=>console.log("@#",err))
 };
 
 

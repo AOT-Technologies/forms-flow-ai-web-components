@@ -39,6 +39,11 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <formsflow-wc
+      keyCloakConfig=""
+      formId="6398adf1344ab922d1e94c5f"
+      message="Thank you for your response"
+    ></formsflow-wc>
     <div id="root"></div>
     <div></div>
     <!--
@@ -51,5 +56,24 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      // let keycloakUrl = 'https://iam.aot-technologies.com/auth'
+      // let realm = 'forms-flow-mahagony'
+      // let clientId = 'forms-flow-web'
+      const keyCloakConfig = {
+        keycloakUrl:
+          'https://iam.aot-technologies.com/auth',
+        realm: 'forms-flow-mahagony',
+        multitenancy: false,
+        authenticationType : "external",
+        clientId: 'forms-flow-web',
+        formioUrl: 'https://app2.aot-technologies.com/formio/form',
+        webBaseUrl: 'https://app2.aot-technologies.com',
+      }
+      // console.log("keyKlocak",keyCloakConfig)
+      document
+        .querySelector('formsflow-wc')
+        .setAttribute('keyCloakConfig', JSON.stringify(keyCloakConfig))
+    </script>
   </body>
 </html>
