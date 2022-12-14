@@ -26,8 +26,9 @@ export const formSubmission = (url,data,callback)=>{
     });
 }   
 
-export const verifyJWTtoken = (url,callback)=>{
-    httpPOSTRequest(url,{},{headers: {"Authorization" : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZW1haWwiOiJhYmlAZ21haWwuY29tIn0.r77ujsoqvxuviB-0Yn6bkKJwBLj_RO7ElgwfY2FIcl8`}}).then((res)=>{
-        callback(res);
+export const verifyJWTtoken = (url,token)=>{
+    console.log("token",token)
+    httpPOSTRequest(url,{},{headers: {"Authorization" : `Bearer ${token}`}}).then((res)=>{
+        localStorage.setItem('formioToken',res.data)
     });
 }

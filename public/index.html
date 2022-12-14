@@ -40,8 +40,9 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <formsflow-wc
-      keyCloakConfig=""
+     configFile=""
       formId="6398adf1344ab922d1e94c5f"
+      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZW1haWwiOiJhYmlAZ21haWwuY29tIn0.r77ujsoqvxuviB-0Yn6bkKJwBLj_RO7ElgwfY2FIcl8"
       message="Thank you for your response"
     ></formsflow-wc>
     <div id="root"></div>
@@ -60,20 +61,20 @@
       // let keycloakUrl = 'https://iam.aot-technologies.com/auth'
       // let realm = 'forms-flow-mahagony'
       // let clientId = 'forms-flow-web'
-      const keyCloakConfig = {
+      const configFile = {
         keycloakUrl:
           'https://iam.aot-technologies.com/auth',
         realm: 'forms-flow-mahagony',
+        clientId: 'forms-flow-web',
         multitenancy: false,
         authenticationType : "external",
-        clientId: 'forms-flow-web',
         formioUrl: 'https://app2.aot-technologies.com/formio/form',
         webBaseUrl: 'https://app2.aot-technologies.com',
       }
-      // console.log("keyKlocak",keyCloakConfig)
+
       document
         .querySelector('formsflow-wc')
-        .setAttribute('keyCloakConfig', JSON.stringify(keyCloakConfig))
+        .setAttribute('configFile', JSON.stringify(configFile))
     </script>
   </body>
 </html>
