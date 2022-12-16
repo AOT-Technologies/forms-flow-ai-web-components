@@ -40,10 +40,10 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <formsflow-wc
-     configFile=""
-      formId="6398adf1344ab922d1e94c5f"
-      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZW1haWwiOiJhYmlAZ21haWwuY29tIn0.r77ujsoqvxuviB-0Yn6bkKJwBLj_RO7ElgwfY2FIcl8"
-      message="Thank you for your response"
+    configFile
+    formId = "6398adf1344ab922d1e94c5f"
+    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZW1haWwiOiJhYmlAZ21haWwuY29tIn0.mgrPugU63_R-HcwOTYv8aukUbx3SDGVWMHXn6EluM5Y"
+    message ="Thank you for your Response"
     ></formsflow-wc>
     <div id="root"></div>
     <div></div>
@@ -63,13 +63,13 @@
       // let clientId = 'forms-flow-web'
       const configFile = {
         keycloakUrl:
-          'https://iam.aot-technologies.com/auth',
-        realm: 'forms-flow-mahagony',
-        clientId: 'forms-flow-web',
-        multitenancy: false,
-        authenticationType : "external",
-        formioUrl: 'https://app2.aot-technologies.com/formio/form',
-        webBaseUrl: 'https://app2.aot-technologies.com',
+      'https://iam.aot-technologies.com/auth',
+    realm: 'forms-flow-mahagony',
+    clientId: 'forms-flow-web',
+    multitenancy: false,
+    authenticationType : "internal",
+    formioUrl: 'https://app2.aot-technologies.com/formio/form',
+    webApiUrl: 'https://app2.aot-technologies.com',
       }
 
       document
