@@ -6,7 +6,6 @@ export const initKeycloak = (url,realm,clientId,done) => {
     realm,
     clientId
   }
-  console.log("config",keycloakConfig)
 const KeycloakData = new Keycloak(keycloakConfig);
   KeycloakData.init({
     onLoad: "check-sso",
@@ -23,7 +22,7 @@ const KeycloakData = new Keycloak(keycloakConfig);
         alert("not logged")
         KeycloakData.login()
     }
-  }).catch(err=>console.log("@#",err))
+  }).catch(err=>console.log("error",err))
 };
 
 

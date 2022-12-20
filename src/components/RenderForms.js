@@ -4,8 +4,8 @@ import {
   formSubmission,
   getForms,
   applicationCreate,
-  getAnonymousForms,
   publicApplicationCreate,
+  externalApplicationCreate,
 } from "../apiManager/services/appService";
 
 function RenderForms(props) {
@@ -16,11 +16,13 @@ function RenderForms(props) {
   const [message, setMessage] = useState("");
   const [formioUrl, setFormioUrl] = useState(null);
   const [anonymousUrl,setAnonymousUrl] = useState(null);
+  const [authToken,setAuthToken] = useState(null);
   // // const [webApiUrl, setWebApiUrl] = useState("");
   useEffect(() => {
     setMessage(document.querySelector("formsflow-wc").getAttribute("message"));
     setFormId(document.querySelector("formsflow-wc").getAttribute("formId"));
-  }, []);
+    setAuthToken(document.querySelector("formsflow-wc").getAttribute("token"));
+  },[]);
 
   useEffect(() => {
     setFormioUrl(`${configFile?.formioUrl}/${formId}`);
@@ -36,14 +38,17 @@ function RenderForms(props) {
   const handleSubmit = (data) => {
     // For form submission
     const submissionUrl = `${configFile.formioUrl}/${formId}/submission`;
+     // Public application create url
+     const webUrl = `${configFile.webApiUrl}/public/application/create`;
+     // application create url
+     const applicationCreateUrl = `${configFile.webApiUrl}/api/application/create`;
+    // external application create url
+     const externalApplicationCreateUrl = `http://localhost:5000/embed/application/create`
     // For submission api
-    if(!anonymous){
-      console.log("anonymous il keri")
-      formSubmission(submissionUrl, {data:data.data,metadata:data.metadata}, (res) => {
+    if(!anonymous && configFile.authenticationType === 'internal'){
+      formSubmission(submissionUrl, {data:data.data,metadata:data.metadata},anonymous, (res) => {
         const formId = res.data.form;
         const submissionId = res.data._id;
-        // Public application create url
-        const webUrl = `${configFile.webApiUrl}/public/application/create`;
         // Form submission url for application create api
         const formUrl = `${configFile.formioUrl}/${formId}/submission/${submissionId}`;
         const webFormUrl = `${configFile.webBaseUrl}/submission/${submissionId}`;
@@ -55,18 +60,35 @@ function RenderForms(props) {
         };
         setIsFormsubmitted(true);
         // API for creating application
-        const applicationCreateUrl = `${configFile.webApiUrl}/api/application/create`;
+        
         if(!anonymous){
           applicationCreate(applicationCreateUrl, formData);
         }
-        if(anonymous){
-          publicApplicationCreate(webUrl,formData);
-        };
+        
       });
     }
-   
+    if(!anonymous && configFile.authenticationType === 'external'){
+      console.log("submission data",data)
+     
+      externalApplicationCreate(externalApplicationCreateUrl,authToken, {data:data.data,formId});
+      setIsFormsubmitted(true);
+    }
+    if(anonymous){
+      const formId = data.form;
+        const submissionId = data._id;
+        // Form submission url for application create api
+        const formUrl = `${configFile.formioUrl}/${formId}/submission/${submissionId}`;
+        const webFormUrl = `${configFile.webBaseUrl}/submission/${submissionId}`;
+        const formData = {
+          formId,
+          formUrl,
+          submissionId,
+          webFormUrl,
+        };
+        setIsFormsubmitted(true);
+      publicApplicationCreate(webUrl,formData);
+    };
   };
-  console.log("anonu",anonymousUrl)
   return (
     <>
       {!isFormSubmitted ? (
@@ -82,17 +104,7 @@ function RenderForms(props) {
             console.log("error", error);
           }}
         />
-      ) : (anonymous)? <Form
-      src={anonymousUrl&&anonymousUrl}
-      onSubmit={(data) => {
-        handleSubmit(data);
-      }}
-      options={{ noAlerts: true }}
-      onFormError={(error) => {
-        console.log("error", error);
-      }}
-    />
-      
+      )
     :  (
         <div className="text-center pt-5">
           <h1>{message}</h1>
