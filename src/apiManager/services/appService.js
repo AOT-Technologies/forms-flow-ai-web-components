@@ -4,6 +4,10 @@ export const applicationCreate = (url,data)=>{
     return  httpPOSTRequest(url,data,{headers: {"Authorization" : `Bearer ${localStorage.getItem('authToken')}`}});
 };
 
+export const externalApplicationCreate = (url,authToken,data)=>{
+    return  httpPOSTRequest(url,data,{headers: {"Authorization" : `Bearer ${authToken}`}});
+};
+
 export const publicApplicationCreate = (url,data)=>{
     return  httpPOSTRequest(url,data);
 }
@@ -25,13 +29,11 @@ export const getForms = (url,token,callback)=>{
 
 export const formSubmission = (url,data,anonymous,callback)=>{
     if(anonymous){
-        console.log("anonymous aanu")
         httpPOSTRequest(url,data).then((res)=>{
             callback(res);
         });
     }
     if(!anonymous){
-        console.log("anonymous alla")
         httpPOSTRequest(url,data,{headers: {"x-jwt-token" : localStorage.getItem('formioToken')}}).then((res)=>{
             callback(res);
         });
@@ -41,8 +43,8 @@ export const formSubmission = (url,data,anonymous,callback)=>{
 
 export const verifyJWTtoken = (url,token,callback)=>{
     httpPOSTRequest(url,{},{headers: {"Authorization" : `Bearer ${token}`}}).then((res)=>{
-        localStorage.setItem('formioToken',res.data)
-        callback(res.data)
+        localStorage.setItem('formioToken',res.data.access_token);
+        callback(res.data);
     });
 }
 

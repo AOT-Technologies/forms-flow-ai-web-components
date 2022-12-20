@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../forms-flow-ai-web-components/dist/build/static/js/index.js"></script>
+</head>
+<body>
+    <formsflow-wc
+     configFile=""
+      formId="6398adf1344ab922d1e94c5f"
+      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZW1haWwiOiJhYmlAZ21haWwuY29tIn0.r77ujsoqvxuviB-0Yn6bkKJwBLj_RO7ElgwfY2FIcl8"
+      message="Thank you for your response"
+    ></formsflow-wc>
+</body>
+<script>
+     const configFile = {
+        keycloakUrl:
+          'https://iam.aot-technologies.com/auth',
+        realm: 'forms-flow-mahagony',
+        clientId: 'forms-flow-web',
+        multitenancy: false,
+        authenticationType : "external",
+        formioUrl: 'https://app2.aot-technologies.com/formio/form',
+        webApiUrl: 'https://app2.aot-technologies.com',
+      }
+
+      document
+        .querySelector('formsflow-wc')
+        .setAttribute('configFile', JSON.stringify(configFile))
+    </script>
+</script>
+</html>
