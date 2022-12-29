@@ -17,12 +17,12 @@ const KeycloakData = new Keycloak(keycloakConfig);
   }).then((authenticated)=>{
     if(authenticated){
             localStorage.setItem('authToken',KeycloakData?.token)
-            done()
+            done(KeycloakData?.token)
     }else{
         alert("not logged")
-        KeycloakData.login()
+        done(false);
     }
-  }).catch(err=>console.log("error",err))
+  }).catch(err=>console.error("error",err))
 };
 
 
