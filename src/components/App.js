@@ -33,7 +33,7 @@ const App = () => {
     // For authentication type external
     if (configFile && configFile.authenticationType === "external") {
       getExternalAuthourizedForm(
-        `http://localhost:5000/embed/external/form/${formName}`,
+        `${configFile.webApiUrl}/embed/external/form/${formName}`,
         jwt,
       ).then((res)=>{
         if(res){
@@ -53,7 +53,7 @@ const App = () => {
         (token,err) => {
           if(token){
             getInternalAUthorizedForms(
-              `http://localhost:5000/embed/internal/form/${formName}`,
+              `${configFile.webApiUrl}/embed/internal/form/${formName}`,
               token,
               (data) => {
                   setFormData(data);

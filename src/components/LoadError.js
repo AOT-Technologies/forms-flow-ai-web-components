@@ -1,5 +1,5 @@
 import React from "react";
-
+// For loading errors
 const LoadError = React.memo(
   ({text}) => {
     return (

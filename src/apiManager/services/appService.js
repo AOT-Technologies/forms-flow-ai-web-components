@@ -4,33 +4,19 @@ import { httpGETRequest, httpPOSTRequest } from "../httpRequestHandler";
 export const internalApplicationCreate = (url, data, callback) => {
   return httpPOSTRequest(url, data, {
     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
-  }).then((res) => {
-    if (res) {
-      callback(res);
-    }
-  }).catch((err)=>{
-    console.error("error",err);
-  });
+  })
 };
 
 //API call for external application create
 export const externalApplicationCreate = (url, authToken, data, callback) => {
   return httpPOSTRequest(url, data, {
     headers: { Authorization: `Bearer ${authToken}` },
-  }).then((res) => {
-    if (res) {
-      callback(res);
-    }
-  }).catch((err)=>{
-    console.error("error",err)
-  });
+  })
 };
 
 // API call for public application create
 export const publicApplicationCreate = (url, data) => {
-  return httpPOSTRequest(url, data).catch((err)=>{
-    console.error("error",err);
-  });
+  return httpPOSTRequest(url, data)
 };
 
 // API call for getting external authentication form json

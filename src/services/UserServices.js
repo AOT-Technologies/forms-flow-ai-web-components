@@ -19,7 +19,6 @@ const KeycloakData = new Keycloak(keycloakConfig);
             localStorage.setItem('authToken',KeycloakData?.token)
             done(KeycloakData?.token)
     }else{
-        alert("not logged")
         done(false);
     }
   }).catch(err=>console.error("error",err))
