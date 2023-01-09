@@ -85,7 +85,7 @@ AuthenticationType ‘external’ means the parent application(parent applicatio
         >
         </formsflow-wc>
 
-You have to give the pathname of form inside formName. The webAPi will call the forms from backend and will pass the response from formio to the webcomponent. So the webcomponent can display the form using the response form formio. In the case of multitenancy you have to give the tenant name and a hifen before the pathname ("tenantkey-pathname") then only the webApi can call forms from formio. Where configFile is a property of a web component which  is in a json format. 
+You have to give the pathname of form inside formName. The webAPi will call the forms from backend and will pass the response from formio to the webcomponent. So the webcomponent can display the form using the response form formio. In the case of multitenancy you have to give the tenant name and a hifen before the pathname ("tenantkey-pathname") then only the webApi can call forms from formio. The configFile is a property of a web component which  is in a json format. 
 
       configFile = {
 	        authenticationType : 'external',
