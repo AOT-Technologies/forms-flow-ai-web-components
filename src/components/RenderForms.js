@@ -79,8 +79,11 @@ function RenderForms(props) {
         submissionId,
         webFormUrl,
       };
-      setIsFormsubmitted(true);
-      publicApplicationCreate(publicApplicationCreateUrl, formData).catch((err)=>{
+      publicApplicationCreate(publicApplicationCreateUrl, formData).then((res)=>{
+        if(res){
+          setIsFormsubmitted(true);
+        }
+      }).catch((err)=>{
         console.error("error",err);
         setErrorText(err.message);
       });
