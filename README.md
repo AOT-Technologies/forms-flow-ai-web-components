@@ -38,7 +38,7 @@ Hence the webcomponent will call the form using the anonymousUrl and the applica
 |  variable name       | Type  | possible values  | 
 | -------------------- | ----- | ---------------- |
 | ```authenticationType``` | String | anonymous | 
-| ```webApiUrl``` | String | eg : 'https://app2.aot-technologies.com/api' |
+| ```webApiUrl``` | String | eg : 'https://sample.com/api' |
     
 **Authenticated Forms (Internal)**
 
@@ -67,11 +67,11 @@ Here the keycloakUrl, realm, clientId should be the url of formsflow application
 
 |  variable name       | Type  | possible values  | 
 | -------------------- | ----- | ---------------- |
-| ```keycloakUrl``` | String | eg : 'https://iam.aot-technologies.com/auth' | 
-| ```realm``` | String | eg : multitenant | 
-| ```clientId``` | String | tenant-forms-flow-web | 
+| ```keycloakUrl``` | String | eg : 'https://sample.com/api' | 
+| ```realm``` | String | eg : sample | 
+| ```clientId``` | String | sample-forms-flow-web | 
 | ```authenticationType``` | String | internal | 
-| ```webApiUrl``` | String | eg : 'https://app2.aot-technologies.com/api' |    
+| ```webApiUrl``` | String | eg : 'https://sample.com/api' |    
 
 **Authenticated Forms (External)**
 
@@ -95,7 +95,7 @@ You have to give the pathname of form inside formName. The webAPi will call the 
 |  variable name       | Type  | possible values  | 
 | -------------------- | ----- | ---------------- |
 | ```authenticationType``` | String | external | 
-| ```webApiUrl``` | String | eg : 'https://app2.aot-technologies.com/api' |     
+| ```webApiUrl``` | String | eg : 'https://sample.com/api' |     
 
 
 Here the token should be created with the shared secret by the formsflow application. And the webcomponent will check if the token is valid or not. If the token is valid then the webcomponent will call the forms and embed it in the parent application. The submission and application creation will be done by the backend. If the token is invalid then the webcomponent will display an error message instead of the form.
