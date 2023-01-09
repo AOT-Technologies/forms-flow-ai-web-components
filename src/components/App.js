@@ -41,7 +41,7 @@ const App = () => {
         }
       }).catch((err)=>{
         console.error("error",err)
-        setErrorText("Authentication failed! Please check if the token is valid or not");
+        setErrorText(err.message);
       })
     }
     // For authentication type internal but not multitenancy
