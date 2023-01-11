@@ -15,7 +15,7 @@ We are providing our formsflow webcomponent (```<formsflow-wc></formsflow-wc>```
  
  **1. Anonymous Forms**
  
- **step 1**
+ **Step 1**
  
  Add the below mentioned webcomponent to your html file :
     
@@ -33,7 +33,7 @@ First,
 
         configFile = {
 	        authenticationType : 'anonymous',
-		formioUrl: ''
+		formioUrl: '',
             webApiUrl : ''
         }
       
@@ -65,7 +65,7 @@ eg :
 ![image](https://user-images.githubusercontent.com/98075058/211549037-50823a3e-e158-4b29-807b-eb70b5570bb5.png)
 
 	
-**step 2**
+**Step 2**
 
 Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
 
@@ -76,7 +76,9 @@ eg:
 
 **2. Authenticated Forms (Internal)**
 
-**step 1**
+AuthenticationType ‘internal’ means the parent application (the application where the webcomponent is implemented) will be using keycloak for authentication.
+
+**Step 1**
  
  Add the below mentioned webcomponent to your html file :
  
@@ -95,7 +97,7 @@ First,
             keycloakUrl : '',
 	        realm : '',
 	        clientId : '',
-	        authenticationType : 'Anonymous',
+	        authenticationType : 'internal',
             webApiUrl : ''
         }
 	
@@ -129,7 +131,7 @@ eg :
 
 ![image](https://user-images.githubusercontent.com/98075058/211549289-2cb89bd9-6b07-4707-bc28-52ceb03050c8.png)
 
-**step 2**
+**Step 2**
 
 Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
 
@@ -140,7 +142,9 @@ eg:
 
 **Authenticated Forms (External)**
 
-**step 1**
+AuthenticationType ‘external’ means the parent application(the application where the webcomponent is used) is not using keycloak for authentication.
+
+**Step 1**
 
 Add the below mentioned webcomponent to your html file :
  
@@ -187,7 +191,7 @@ Third,
 Note : 
 *  For normal case, the token should be created by encoding the preferred_username and email. 
    * eg: { preferred_username : 'sample' , email : 'sample@gmail.com'}
-*  For multitenancy, tenant key shoul be added along with preferred_username and email
+*  For multitenancy, tenant key should be added along with preferred_username and email
    * eg : { preferred_username : 'sample' , email : 'sample@gmail.com' , tenantKey : 'tenant1'}
  
 Fourth,
@@ -202,7 +206,7 @@ eg :
 
 ![image](https://user-images.githubusercontent.com/98075058/211554624-0812c4a5-79d8-437c-b2c2-323fa676b5f6.png)
 
-**step 2**
+**Step 2**
 
 Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
 
