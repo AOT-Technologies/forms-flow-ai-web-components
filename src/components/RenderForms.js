@@ -61,7 +61,6 @@ function RenderForms(props) {
           setIsFormsubmitted(true);
         }
       }).catch((err)=>{
-        console.log("catch error")
         console.error("error",err.message);
         setErrorText(err.message);
       });

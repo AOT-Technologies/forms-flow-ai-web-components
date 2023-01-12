@@ -50,15 +50,19 @@ const App = () => {
         configFile.keycloakUrl,
         configFile.realm,
         configFile.clientId,
-        (token,err) => {
+        (token) => {
           if(token){
             getInternalAUthorizedForms(
               `${configFile.webApiUrl}/embed/internal/form/${formName}`,
-              token,
-              (data) => {
-                  setFormData(data);
+              token
+            ).then(
+              (res) => {
+                setFormData(res.data);
               }
-            );
+            ).catch((err)=>{
+              console.error("error",err)
+              setErrorText(err.message);
+            });
           }else{
             setErrorText("Authentication failed! Please check if the application is logged in or not");
           }
@@ -66,6 +70,7 @@ const App = () => {
         }
       );
     }
+    
     // For anonymous
     if (configFile && configFile.authenticationType === "anonymous") {
       setAnonymous(true);

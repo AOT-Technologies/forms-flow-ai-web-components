@@ -35,16 +35,32 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-    <script src="../dist/build/static/js/index.js"></script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <formsflow-wc
     configFile
       formName = "embeddingtestform-1672722115013"
-      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzYW1wbGUiLCJlbWFpbCI6InNhbXBsZUBlbWFpbC5jb20iLCJ0ZW5hbnRLZXkiOiJjaGVjazI1MTAifQ.KhtKeDIk5PxSuhV8ObN_OB0FmmGwtTzvtWDGc7Vl8DA"
+      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzYW1wbGUiLCJlbWFpbCI6InNhbXBsZUBlbWFpbC5jb20ifQ.AdTD5cMc2czP71H2Qfb42AXyLodTt9fPItFD7DybqJ0"
       message ="Thank you for your Response"
     ></formsflow-wc>
+
+    <script>
+        const configFile = {
+          keycloakUrl:
+        'https://iam.aot-technologies.com/auth',
+      realm: 'forms-flow-mahagony',
+      clientId: 'forms-flow-webs',
+      multitenancy: false,
+      authenticationType : "internal",
+      webApiUrl: 'https://app2.aot-technologies.com/api',
+        }
+  
+        document
+          .querySelector('formsflow-wc')
+          .setAttribute('configFile', JSON.stringify(configFile))
+      </script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div></div>
     <!--
@@ -57,23 +73,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script>
-      // let keycloakUrl = 'https://iam.aot-technologies.com/auth'
-      // let realm = 'forms-flow-mahagony'
-      // let clientId = 'forms-flow-web'
-      const configFile = {
-        keycloakUrl:
-      'https://iam.aot-technologies.com/auth',
-    realm: 'forms-flow-mahagony',
-    clientId: 'forms-flow-web',
-    multitenancy: false,
-    authenticationType : "external",
-    webApiUrl: 'https://app2.aot-technologies.com/api',
-      }
-
-      document
-        .querySelector('formsflow-wc')
-        .setAttribute('configFile', JSON.stringify(configFile))
-    </script>
   </body>
 </html>
