@@ -26,11 +26,5 @@ export const getExternalAuthourizedForm = (url, token, callback) => {
 
 // API call for getting internal authentication form json
 export const getInternalAUthorizedForms = (url, token, callback) => {
-  httpGETRequest(url, { headers: { Authorization: `Bearer ${token}` } }).then(
-    (res) => {
-      callback(res.data);
-    }
-  ).catch((err)=>{
-    console.error("error",err)
-  });
+  return httpGETRequest(url, { headers: { Authorization: `Bearer ${token}` } })
 };
