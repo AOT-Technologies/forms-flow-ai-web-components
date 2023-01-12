@@ -115,7 +115,7 @@ First,
 | ```keycloakUrl``` | String | keycloak  url | eg : 'https://sample.com/auth' |
 | ```realm``` | String | keycloak realm | eg : sample |
 | ```clientId``` | String | keycloak client id | eg : tenant-clientId |
-| ```authenticationType``` | String | The preferred type of authentication | internal <br/> (AuthenticationType ‘internal’ means the parent application (the application where the webcomponent is implemented) will be using keycloak for authentication) |
+| ```authenticationType``` | String | The preferred type of authentication | internal |
 | ```webApiUrl``` | String | Api url | eg : 'https://sample.com/api' |
 
 second,
@@ -187,7 +187,7 @@ First,
 
 |  Variable Name       | Type  | Description  | Possible Values  |
 | -------------------- | ----- | -----------  |---------------- | 
-| ```authenticationType``` | String |The preferred type of authentication | external <br/> (AuthenticationType ‘external’ means the parent application(the application where the webcomponent is used) is not using keycloak for authentication) |
+| ```authenticationType``` | String |The preferred type of authentication | external  |
 | ```webApiUrl``` | String | Api url | eg : 'https://sample.com/api' |
 
 second,
