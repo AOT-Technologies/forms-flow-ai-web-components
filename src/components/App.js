@@ -13,7 +13,7 @@ const App = () => {
   const [formName, setFormName] = useState(null);
   const [formData, setFormData] = useState(null);
   const [anonymous, setAnonymous] = useState(false);
-  const [errorText,setErrorText] = useState(null);
+  const [errorText, setErrorText] = useState(null);
 
   // To set config file data and other parameters to state at initial time
   useEffect(() => {
@@ -34,15 +34,17 @@ const App = () => {
     if (configFile && configFile.authenticationType === "external") {
       getExternalAuthourizedForm(
         `${configFile.webApiUrl}/embed/external/form/${formName}`,
-        jwt,
-      ).then((res)=>{
-        if(res){
-          setFormData(res.data);
-        }
-      }).catch((err)=>{
-        console.error("error",err)
-        setErrorText(err.message);
-      })
+        jwt
+      )
+        .then((res) => {
+          if (res) {
+            setFormData(res.data);
+          }
+        })
+        .catch((err) => {
+          console.error("error", err);
+          setErrorText(err.message);
+        });
     }
     // For authentication type internal but not multitenancy
     if (configFile && configFile.authenticationType === "internal") {
@@ -51,40 +53,38 @@ const App = () => {
         configFile.realm,
         configFile.clientId,
         (token) => {
-          if(token){
+          if (token) {
             getInternalAUthorizedForms(
               `${configFile.webApiUrl}/embed/internal/form/${formName}`,
               token
-            ).then(
-              (res) => {
+            )
+              .then((res) => {
                 setFormData(res.data);
-              }
-            ).catch((err)=>{
-              console.error("error",err)
-              setErrorText(err.message);
-            });
-          }else{
-            setErrorText("Authentication failed! Please check if the application is logged in or not");
+              })
+              .catch((err) => {
+                console.error("error", err);
+                setErrorText(err.message);
+              });
+          } else {
+            setErrorText(
+              "Authentication failed! Please check if the application is logged in or not"
+            );
           }
-          
         }
       );
     }
-    
+
     // For anonymous
     if (configFile && configFile.authenticationType === "anonymous") {
       setAnonymous(true);
     }
   }, [configFile, jwt, formName]);
-  
-
 
   return (
     <div className="container">
-      
-      {
-      errorText ? <LoadError text={errorText}/> :
-      formData || anonymous ? (
+      {errorText ? (
+        <LoadError text={errorText} />
+      ) : formData || anonymous ? (
         <RenderForms
           configFile={configFile}
           formData={formData}
