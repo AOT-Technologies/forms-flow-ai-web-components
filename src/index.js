@@ -19,9 +19,3 @@ customElements.define(
   "formsflow-wc",
   reactToWebComponent(index, React, ReactDOM)
 );
-// ReactDOM.render(
-//   <React.StrictMode>
-//       <App />
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
