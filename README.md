@@ -62,7 +62,12 @@ Third,
 
 eg :
 
-![image](https://user-images.githubusercontent.com/98075058/211549037-50823a3e-e158-4b29-807b-eb70b5570bb5.png)
+      <formsflow-wc
+      configFile
+      anonymousUrl="https://sample.com/form/formio/test-form"
+      message ="Thank you for your Response"
+      >
+      </formsflow-wc> 
 
 	
 **Step 2**
@@ -71,7 +76,11 @@ Replace and add the config file according to your environment. Convert the confi
 
 eg:
 
-![image](https://user-images.githubusercontent.com/98075058/211545613-83438c29-a119-4952-822a-99c3d4501094.png)
+    const configFile = {
+    authenticationType : "anonymous",
+    formioUrl: 'https://sample/form/formio',
+    webApiUrl: 'https://sample.com/api',
+    }
 
 
 **2. Authenticated Forms (Internal)**
@@ -82,7 +91,7 @@ AuthenticationType ‘internal’ means the parent application (the application 
  
  Add the below mentioned webcomponent to your html file :
  
- 	<formsflow-wc
+ 	   <formsflow-wc
 	       configFile
            formName = ''
 	       message = ''
@@ -129,7 +138,12 @@ Third,
 
 eg :
 
-![image](https://user-images.githubusercontent.com/98075058/211549289-2cb89bd9-6b07-4707-bc28-52ceb03050c8.png)
+    <formsflow-wc
+       configFile
+       formName = 'test-form'
+       message = 'Thank you for your response'
+    >
+    </formsflow-wc> 
 
 **Step 2**
 
@@ -137,7 +151,13 @@ Replace and add the config file according to your environment. Convert the confi
 
 eg:
 
-![image](https://user-images.githubusercontent.com/98075058/211549668-886c447e-292f-480a-90ce-cbd8ae24c387.png)
+      const configFile = {
+      keycloakUrl : 'https://sample.com/auth',
+      realm : 'test',
+      clientId : 'testId',
+      authenticationType : 'internal',
+      webApiUrl : 'https://sample.com/api'
+  }
   
 
 **Authenticated Forms (External)**
@@ -148,7 +168,7 @@ AuthenticationType ‘external’ means the parent application(the application w
 
 Add the below mentioned webcomponent to your html file :
  
- 	<formsflow-wc
+ 	   <formsflow-wc
 	       configFile
            formName = ''
            token = ''  
@@ -204,7 +224,13 @@ Fourth,
 
 eg :
 
-![image](https://user-images.githubusercontent.com/98075058/211554624-0812c4a5-79d8-437c-b2c2-323fa676b5f6.png)
+     <formsflow-wc
+       configFile
+       formName = 'test-form'
+       token = 'e11jsijuihsiuhsuhiushuisjsoijiosjos88skmsiuhsuihsiuhyusguysguyshyusgyusgyusg'  
+       message = 'Thank you for your response'
+    >
+    </formsflow-wc>
 
 **Step 2**
 
@@ -212,10 +238,20 @@ Replace and add the config file according to your environment. Convert the confi
 
 eg:
 
-![image](https://user-images.githubusercontent.com/98075058/211555279-11d7cbd1-fe8e-4201-8df1-a5e52ecf6c90.png)
+          configFile = {
+           authenticationType : 'external',
+           webApiUrl : 'https://sample.com/api'
+          }
 
+You can use our webcomponent in your application by either installing our npm package or using our cdn. 
+ * cdn : https://d212bc5dnplrd1.cloudfront.net/
+ 
+We will provide two more links along with our component: <br/>&nbsp;&nbsp;(i) for bootstrap (you can avoid that if you are already using the bootstrap in your application).
+ * bootstrap : https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css
 
-You can use our webcomponent in your application by either installing our npm package or using our cdn. We will provide two more links along with our component: <br/>&nbsp;&nbsp;(i) for bootstrap (you can avoid that if you are already using the bootstrap in your application). <br/>&nbsp;&nbsp;(ii) for formio css.
+&nbsp;&nbsp;(ii) for formio css.
+ * formio css : https://cdn.jsdelivr.net/npm/formiojs@4.13.1/dist/formio.full.min.css
+
         
         
         
