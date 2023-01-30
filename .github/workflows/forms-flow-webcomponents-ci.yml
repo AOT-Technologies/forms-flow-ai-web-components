@@ -14,11 +14,6 @@ on:
     paths:
       - "store/**"
 
-defaults:
-  run:
-    shell: bash
-    working-directory: ./forms-flow-ai-web-components
-
 jobs:
   setup-job:
     runs-on: ubuntu-20.04
