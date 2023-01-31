@@ -305,7 +305,7 @@ note :
 * And you can host this build file as cdn and you can use that cdn for form embedding.	
 	
 	
-you can reffer https://github.com/AOT-Technologies/forms-flow-ai-web-components/tree/custom_components	
+you can reffer https://github.com/AOT-Technologies/forms-flow-ai-web-components	
 	
 	
 	
