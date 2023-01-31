@@ -14,6 +14,7 @@ const App = () => {
   const [formData, setFormData] = useState(null);
   const [anonymous, setAnonymous] = useState(false);
   const [errorText, setErrorText] = useState(null);
+  const authenticationType = ['internal','external','anonymous'];
 
   // To set config file data and other parameters to state at initial time
   useEffect(() => {
@@ -30,6 +31,9 @@ const App = () => {
 
   // To Verify token and get form json data form backend
   useEffect(() => {
+    if(configFile && !authenticationType.includes(configFile.authenticationType) ){
+      setErrorText("invalid authentication type");
+    }
     // For authentication type external
     if (configFile && configFile.authenticationType === "external") {
       getExternalAuthourizedForm(
@@ -45,6 +49,7 @@ const App = () => {
           console.error("error", err);
           setErrorText(err.message);
         });
+        return true;
     }
     // For authentication type internal but not multitenancy
     if (configFile && configFile.authenticationType === "internal") {
@@ -67,16 +72,18 @@ const App = () => {
               });
           } else {
             setErrorText(
-              "Authentication failed! Please check if the application is logged in or not"
+              "Authentication failed!"
             );
           }
         }
-      );
+      )
+      return true;
     }
 
     // For anonymous
     if (configFile && configFile.authenticationType === "anonymous") {
       setAnonymous(true);
+      return true;
     }
   }, [configFile, jwt, formName]);
 
