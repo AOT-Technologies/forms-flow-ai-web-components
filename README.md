@@ -251,7 +251,50 @@ We will provide two more links along with our component: <br/>&nbsp;&nbsp;(i) fo
 
 &nbsp;&nbsp;(ii) for formio css.
  * formio css : https://cdn.jsdelivr.net/npm/formiojs@4.13.1/dist/formio.full.min.css
+ 
 
+To add custom components in form embedding 
+
+ **Step 1**
+ 
+* Clone the repo forms-flow-ai-web-components
+ 
+       git clone https://github.com/AOT-Technologies/forms-flow-ai-web-components.git
+       
+ **Step 2**
+  
+* install node modules
+
+      npm install
+     
+ **Step 3** 
+ 
+* install npm package for custom component
+
+ eg : 
+  
+       npm i forms-flow-custom-component
+ 
+ **Step 4**
+ 
+* import custom component from the package
+
+ eg : 
+ 
+ 	import formsFlowCustomComponent from 'forms-flow-custom-component'
+
+ **Step 5**
+ 
+ * use the imported custom component in formio
+ 
+ eg :  
+  
+        Formio.use(formsFlowCustomComponent)
+	
+you can reffer https://github.com/AOT-Technologies/forms-flow-ai-web-components/tree/custom_component	
+	
+	
+	
         
         
         
