@@ -266,6 +266,12 @@ To add custom components in form embedding
 * install node modules
 
       npm install
+      
+ note : if you dont need our formsflow custom component you can remove it from the package
+ 
+ eg : 
+  
+     npm uninstall formsflow-formio-custom-elements
      
  **Step 3** 
  
@@ -291,7 +297,15 @@ To add custom components in form embedding
   
         Formio.use(formsFlowCustomComponent)
 	
-you can reffer https://github.com/AOT-Technologies/forms-flow-ai-web-components/tree/custom_component	
+note : 
+ * you can create a build by running the command 
+ 
+ 	   npm run build
+	
+* And you can host this build file as cdn and you can use that cdn for form embedding.	
+	
+	
+you can reffer https://github.com/AOT-Technologies/forms-flow-ai-web-components/tree/custom_components	
 	
 	
 	
