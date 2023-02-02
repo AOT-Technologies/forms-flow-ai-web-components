@@ -5,6 +5,16 @@ Hybrid form embedding is a feature where you can embed both authenticated and an
 
 We are providing our formsflow webcomponent (```<formsflow-wc></formsflow-wc>```) that you can add in your frontend framework. The component will accept some parameters that will be different for different scenarios.
 
+You can use our webcomponent in your application by either installing our npm package or using our cdn. 
+ * cdn : https://d212bc5dnplrd1.cloudfront.net/
+ 
+We will provide two more links along with our component for styling purpose:
+<br/>&nbsp;&nbsp;(i) for bootstrap (you can avoid that if you are already using the bootstrap in your application).
+ * bootstrap : https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css
+
+&nbsp;&nbsp;(ii) for formio css.
+ * formio css : https://cdn.jsdelivr.net/npm/formiojs@4.13.1/dist/formio.full.min.css
+
  As of now there are three scenarios :
  
  1. Anonymous Forms
@@ -68,9 +78,7 @@ eg :
       message ="Thank you for your Response"
       >
       </formsflow-wc> 
-
-	
-**Step 2**
+      
 
 Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
 
@@ -81,6 +89,7 @@ eg:
     formioUrl: 'https://sample/form/formio',
     webApiUrl: 'https://sample.com/api',
     }
+    document.querySelector('formsflow-wc').setAttribute('configFile',JSON.stringify(configFile))
 
 
 **2. Authenticated Forms (Internal)**
@@ -145,8 +154,6 @@ eg :
     >
     </formsflow-wc> 
 
-**Step 2**
-
 Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
 
 eg:
@@ -158,6 +165,8 @@ eg:
       authenticationType : 'internal',
       webApiUrl : 'https://sample.com/api'
   }
+  
+  document.querySelector('formsflow-wc').setAttribute('configFile',JSON.stringify(configFile));
   
 
 **Authenticated Forms (External)**
@@ -232,8 +241,6 @@ eg :
     >
     </formsflow-wc>
 
-**Step 2**
-
 Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
 
 eg:
@@ -242,18 +249,13 @@ eg:
            authenticationType : 'external',
            webApiUrl : 'https://sample.com/api'
           }
+	  
+	  document.querySelector('formsflow-wc').setAttribute('configFile',JSON.stringify(configFile));
 
-You can use our webcomponent in your application by either installing our npm package or using our cdn. 
- * cdn : https://d212bc5dnplrd1.cloudfront.net/
- 
-We will provide two more links along with our component: <br/>&nbsp;&nbsp;(i) for bootstrap (you can avoid that if you are already using the bootstrap in your application).
- * bootstrap : https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css
 
-&nbsp;&nbsp;(ii) for formio css.
- * formio css : https://cdn.jsdelivr.net/npm/formiojs@4.13.1/dist/formio.full.min.css
- 
 
-To add custom components in form embedding 
+
+***To add custom components in form embedding*** 
 
  **Step 1**
  
