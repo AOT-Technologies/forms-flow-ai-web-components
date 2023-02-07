@@ -14,7 +14,7 @@ const App = () => {
   const [formData, setFormData] = useState(null);
   const [anonymous, setAnonymous] = useState(false);
   const [errorText, setErrorText] = useState(null);
-
+console.log("hiii")
   // To set config file data and other parameters to state at initial time
   useEffect(() => {
     setConfigFile(
