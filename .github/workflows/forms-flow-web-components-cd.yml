@@ -26,5 +26,5 @@ jobs:
       
       - run: npm ci
         working-directory: ./scripts
-      - run: BUCKET=forms-flow-front-end-beta node index forms-flow-webcomponent
+      - run: node index forms-flow-webcomponent
         working-directory: ./scripts
