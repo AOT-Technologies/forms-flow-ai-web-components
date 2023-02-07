@@ -24,6 +24,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ca-central-1
       
-        working-directory: ./scripts
+        working-directory: /forms-flow-ai-web-components/scripts
       - run: BUCKET=forms-flow-front-end-beta node index forms-flow-webcomponent
-        working-directory: ./scripts
+        working-directory: /forms-flow-ai-web-components/scripts
