@@ -1,0 +1,29 @@
+name: forms-flow-webcomponent-cd
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - ci-integration
+jobs:
+  build:
+    name: Build and push artifacts to s3
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14.17.0'
+          #TODO: force installing due to dependency conflict need to resolve the dependency
+      - run: npm ci --force
+        working-directory: ./forms-flow-ai-web-components
+      - run: npm run build:webpack
+        working-directory: ./forms-flow-ai-web-components/dist/build/static/js/index.js
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ca-central-1
+      
+        working-directory: ./scripts
+      - run: BUCKET=${{ secrets.BUCKET}} node index forms-flow-ai-web-components
+        working-directory: ./scripts
