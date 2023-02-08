@@ -74,10 +74,10 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci --force
-        working-directory: ./forms-flow-webcomponents
+        working-directory: ./forms-flow-webcomponent
       - name: Build
         id: build
         run: |
           npm run build
-        working-directory: ./forms-flow-webcomponents
+        working-directory: ./forms-flow-webcomponent
 
