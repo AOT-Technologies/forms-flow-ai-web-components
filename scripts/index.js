@@ -69,7 +69,7 @@ async function upload(file_name, file) {
     
 }
 
-Walk.walk(`../${component}/dist`, walkFunc)
+Walk.walk(`../${component}/dist/build/static/js`, walkFunc)
   .then(function (res) {
     console.log("response",res)
     console.log("Collected all artifacts to upload");
