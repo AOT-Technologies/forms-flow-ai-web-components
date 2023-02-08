@@ -99,6 +99,8 @@ function walkFunc(err, pathname, dirent) {
             `Collecting artifact -> ${path.dirname(pathname)}/${dirent.name}`
           );
           if (dirent.name === `${component}.js`) {
+            console.log("dirent name",dirent.name)
+            console.log("component name",`${component}.js`)
             compressFileAndUpload(dirent.name, `${path.dirname(pathname)}`);
           }
     } catch (err) {
