@@ -7,6 +7,8 @@ import { createGzip } from "zlib";
 const BUCKET = 'forms-flow-front-end-beta';
 const component = process.argv.slice(2)[0];
 
+console.log("component",component)
+
 if (!component) {
   throw Error(`Please provide component name 
   usage node index [component]
