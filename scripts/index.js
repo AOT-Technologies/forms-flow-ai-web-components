@@ -7,8 +7,6 @@ import { createGzip } from "zlib";
 const BUCKET = 'forms-flow-front-end-beta';
 const component = process.argv.slice(2)[0];
 
-console.log("component",component)
-
 if (!component) {
   throw Error(`Please provide component name 
   usage node index [component]
@@ -70,8 +68,7 @@ async function upload(file_name, file) {
 }
 
 Walk.walk(`../${component}/dist/build/static/js`, walkFunc)
-  .then(function (res) {
-    console.log("response",res)
+  .then(function () {
     console.log("Collected all artifacts to upload");
   })
   .catch(function (reason) {
@@ -98,8 +95,6 @@ function walkFunc(err, pathname, dirent) {
         console.log(
             `Collecting artifact -> ${path.dirname(pathname)}/${dirent.name}`
           );
-          console.log("dirent name",dirent.name)
-            console.log("component name",`${component}.js`)
           if (dirent.name === `${component}.js`) {
             compressFileAndUpload(dirent.name, `${path.dirname(pathname)}`);
           }
