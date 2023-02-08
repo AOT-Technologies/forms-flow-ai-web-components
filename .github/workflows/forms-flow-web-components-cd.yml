@@ -22,11 +22,9 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ca-central-1
+          aws-region: ${{ secrets.REGION }}
       
       - run: npm ci
         working-directory: ./scripts
-      - run: BUCKET=forms-flow-front-end-beta node index forms-flow-webcomponent
-        env: 
-          BUCKET: forms-flow-front-end-beta
+      - run: BUCKET=${{ secrets.BUCKET}} node index forms-flow-webcomponent
         working-directory: ./scripts
