@@ -10,7 +10,7 @@ module.exports = {
     "bundle.js": glob.sync("build/static/?(js|css)/main.*.?(js|css)").map(f => path.resolve(__dirname, f)),
   },
   output: {
-    filename: "build/static/js/index.js",
+    filename: "build/static/js/forms-flow-webcomponent.js",
   },
   module: {
     rules: [
