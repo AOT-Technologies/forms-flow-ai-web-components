@@ -14,7 +14,7 @@ const App = () => {
   const [formData, setFormData] = useState(null);
   const [anonymous, setAnonymous] = useState(false);
   const [errorText, setErrorText] = useState(null);
-  const authenticationType = ['internal','external','anonymous'];
+
 
   // To set config file data and other parameters to state at initial time
   useEffect(() => {
@@ -31,6 +31,7 @@ const App = () => {
 
   // To Verify token and get form json data form backend
   useEffect(() => {
+    const authenticationType = ['internal','external','anonymous'];
     if(configFile && !authenticationType.includes(configFile.authenticationType) ){
       setErrorText("invalid authentication type");
     }

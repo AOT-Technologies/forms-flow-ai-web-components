@@ -1,0 +1,39 @@
+name: forms-flow-webcomponent-cd
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build and push artifacts to s3
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14.17.0'
+          #TODO: force installing due to dependency conflict need to resolve the dependency
+      - run: npm ci --force
+        working-directory: ./forms-flow-webcomponent
+      - run: npm run build
+        working-directory: ./forms-flow-webcomponent
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.REGION }}
+      
+      - run: npm ci
+        working-directory: ./scripts
+      - run: BUCKET=${{ secrets.BUCKET}} node index forms-flow-webcomponent
+        working-directory: ./scripts
+      
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
+          PATHS: "/*"
+          AWS_REGION: ${{ secrets.REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
