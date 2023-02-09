@@ -6,7 +6,6 @@ on:
     branches:
       - develop
       - main
-      - ci-integration
   pull_request:
     branches:
       - develop

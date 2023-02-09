@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "react-formio";
+import { Form,Formio} from "react-formio";
 import {
   publicApplicationCreate,
   externalApplicationCreate,
   internalApplicationCreate,
 } from "../apiManager/services/appService";
 import LoadError from "./LoadError";
+import FormioCustomEx from "formsflow-formio-custom-elements/dist/customformio-ex";
+
 
 function RenderForms(props) {
+  Formio.use(FormioCustomEx);
   let { configFile, formData, anonymous } = props;
   const [isFormSubmitted, setIsFormsubmitted] = useState(false);
   const [message, setMessage] = useState("");

@@ -21,7 +21,10 @@ const KeycloakData = new Keycloak(keycloakConfig);
     }else{
         done(false);
     }
-  }).catch(err=>console.error("error",err))
+  }).catch(err=> {
+    console.error("error",err)
+    done(false)
+  })
 };
 
 

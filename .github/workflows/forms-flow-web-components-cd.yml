@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - ci-integration
+      - main
 jobs:
   build:
     name: Build and push artifacts to s3
@@ -32,8 +32,8 @@ jobs:
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
-          DISTRIBUTION: E2JOCUTGELVADD
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
           PATHS: "/*"
-          AWS_REGION: "ca-central-1"
+          AWS_REGION: ${{ secrets.REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
