@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - develop
+      - theme_testing
 jobs:
   build:
     name: Build and push artifacts to s3

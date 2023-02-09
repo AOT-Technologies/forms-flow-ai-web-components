@@ -7,10 +7,12 @@ import {
 } from "../apiManager/services/appService";
 import LoadError from "./LoadError";
 import FormioCustomEx from "formsflow-formio-custom-elements/dist/customformio-ex";
+import formsflowFormioTheme from 'forms-flow-formio-theme'
 
 
 function RenderForms(props) {
   Formio.use(FormioCustomEx);
+  Formio.use(formsflowFormioTheme)
   let { configFile, formData, anonymous } = props;
   const [isFormSubmitted, setIsFormsubmitted] = useState(false);
   const [message, setMessage] = useState("");

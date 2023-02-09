@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.27.2",
+    "forms-flow-formio-theme": "0.0.1",
     "formsflow-formio-custom-elements": "^1.0.3",
     "keycloak-js": "^20.0.1",
     "react": "^18.1.0",
