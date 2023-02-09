@@ -13,8 +13,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14.17.0'
-          #TODO: force installing due to dependency conflict need to resolve the dependency
-      - run: npm ci --force
+      - run: npm ci 
         working-directory: ./forms-flow-webcomponent
       - run: npm run build
         working-directory: ./forms-flow-webcomponent
