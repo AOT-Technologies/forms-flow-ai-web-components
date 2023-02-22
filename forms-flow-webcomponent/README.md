@@ -6,7 +6,7 @@ Hybrid form embedding is a feature where you can embed both authenticated and an
 We are providing our formsflow webcomponent (```<formsflow-wc></formsflow-wc>```) that you can add in your frontend framework. The component will accept some parameters that will be different for different scenarios.
 
 You can use our webcomponent in your application by either installing our npm package or using our cdn. 
- * cdn : https://d212bc5dnplrd1.cloudfront.net/
+ * cdn : https://dm3cs41qneo90.cloudfront.net/
  * npm : ```npm i formsflow-wc```
    
  *  note : if you are using npm package use ```import 'formsflow-wc'``` in your component
