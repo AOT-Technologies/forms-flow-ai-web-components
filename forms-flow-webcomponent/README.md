@@ -7,7 +7,10 @@ We are providing our formsflow webcomponent (```<formsflow-wc></formsflow-wc>```
 
 You can use our webcomponent in your application by either installing our npm package or using our cdn. 
  * cdn : https://d212bc5dnplrd1.cloudfront.net/
- 
+ * npm : ```npm i formsflow-wc```
+   
+ *  note : if you are using npm package use ```import 'formsflow-wc'``` in your component
+      
 We will provide two more links along with our component for styling purpose:
 <br/>&nbsp;&nbsp;(i) for bootstrap (you can avoid that if you are already using the bootstrap in your application).
  * bootstrap : https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css
