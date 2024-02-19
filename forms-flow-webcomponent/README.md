@@ -53,7 +53,7 @@ First,
 |  Variable Name       | Type  | Description  | Possible Values  |
 | -------------------- | ----- | -----------  |---------------- | 
 | ```authenticationType``` | String |The preferred type of authentication | anonymous |
-| ```formioUrl``` | String | formio url | eg : 'https://sample.com/formio/form' | 
+| ```formioUrl``` | String | formio url (```/form``` is mandatory after formio url) | eg : 'https://sample.com/formio/form' | 
 | ```webApiUrl``` | String | Api url | eg : 'https://sample.com/api' |
 
 Second,
@@ -89,7 +89,7 @@ eg:
 
     const configFile = {
     authenticationType : "anonymous",
-    formioUrl: 'https://sample/form/formio',
+    formioUrl: 'https://sample.com/formio/form',
     webApiUrl: 'https://sample.com/api',
     }
     document.querySelector('formsflow-wc').setAttribute('configFile',JSON.stringify(configFile))
