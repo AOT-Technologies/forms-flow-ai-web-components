@@ -16,7 +16,7 @@ const KeycloakData = new Keycloak(keycloakConfig);
     checkLoginIframe: false,
   }).then((authenticated)=>{
     if(authenticated){
-            localStorage.setItem('authToken',KeycloakData?.token)
+            localStorage.setItem('AUTH_TOKEN',KeycloakData?.token)
             done(KeycloakData?.token)
     }else{
         done(false);

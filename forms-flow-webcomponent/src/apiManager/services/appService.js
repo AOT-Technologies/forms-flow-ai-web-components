@@ -3,14 +3,14 @@ import { httpGETRequest, httpPOSTRequest } from "../httpRequestHandler";
 // API call for internal application create
 export const internalApplicationCreate = (url, data, callback) => {
   return httpPOSTRequest(url, data, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+    headers: { Authorization: `Bearer ${localStorage.getItem("AUTH_TOKEN")}` },
   })
 };
 
 //API call for external application create
-export const externalApplicationCreate = (url, authToken, data, callback) => {
+export const externalApplicationCreate = (url, AUTH_TOKEN, data, callback) => {
   return httpPOSTRequest(url, data, {
-    headers: { Authorization: `Bearer ${authToken}` },
+    headers: { Authorization: `Bearer ${AUTH_TOKEN}` },
   })
 };
 

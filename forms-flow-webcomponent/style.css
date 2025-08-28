@@ -1,4 +1,4 @@
-formsflow-wc #tippy-1{
+formsflow-webembed #tippy-1{
     z-index: 10000;
     visibility: visible;
     position: absolute;
@@ -7,11 +7,11 @@ formsflow-wc #tippy-1{
     transform: translate3d(65.6px, 156px, 0px);
 }
 
-formsflow-wc .tippy-box{
+formsflow-webembed .tippy-box{
     max-width: 350px;
     transition-duration: 300ms;
 }
 
-formsflow-wc .tippy-content{
+formsflow-webembed .tippy-content{
     transition-duration: 300ms;
 }

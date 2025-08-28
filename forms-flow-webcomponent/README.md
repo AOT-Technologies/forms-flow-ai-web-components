@@ -1,319 +1,347 @@
-# forms-flow-ai-web-components
- **HYBRID FORM EMBEDDING** 
+# Forms Flow AI Web Components
 
-Hybrid form embedding is a feature where you can embed both authenticated and anonymous forms in your application. This feature allows user to submit forms from your application. 
+> **Hybrid Form Embedding** - Seamlessly embed both authenticated and anonymous forms in your application.
 
-We are providing our formsflow webcomponent (```<formsflow-wc></formsflow-wc>```) that you can add in your frontend framework. The component will accept some parameters that will be different for different scenarios.
+## 📋 Table of Contents
 
-You can use our webcomponent in your application by either installing our npm package or using our cdn. 
- * cdn : https://dm3cs41qneo90.cloudfront.net/
- * npm : ```npm i formsflow-wc```
-   
- *  note : if you are using npm package use ```import 'formsflow-wc'``` in your component
-      
-We will provide two more links along with our component for styling purpose:
-<br/>&nbsp;&nbsp;(i) for bootstrap (you can avoid that if you are already using the bootstrap in your application).
- * bootstrap : https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css
+- [Overview](#overview)
+- [Installation](#installation)
+- [Required CSS Dependencies](#required-css-dependencies)
+- [Usage Scenarios](#usage-scenarios)
+  - [1. Anonymous Forms](#1-anonymous-forms)
+  - [2. Authenticated Forms (Internal)](#2-authenticated-forms-internal)
+  - [3. Authenticated Forms (External)](#3-authenticated-forms-external)
+- [Custom Components](#custom-components)
+- [API Reference](#api-reference)
+- [Additional Resources](#additional-resources)
 
-&nbsp;&nbsp;(ii) for formio css.
- * formio css : https://cdn.jsdelivr.net/npm/formiojs@4.13.1/dist/formio.full.min.css
+## 🎯 Overview
 
- As of now there are three scenarios :
- 
- 1. Anonymous Forms
- 
- 2. Authenticated Forms (Internal)
- 
- 3. Authenticated Forms (External)
- 
- **1. Anonymous Forms**
- 
- **Step 1**
- 
- Add the below mentioned webcomponent to your html file :
-    
-       
-       <formsflow-wc
-	       configFile
-	       anonymousUrl = ''
-           message = ''
-       >
-       </formsflow-wc>
-       
-Here, the webcomponent will accept three parameters :
+Forms Flow AI Web Components provides a powerful hybrid form embedding solution that allows you to integrate both authenticated and anonymous forms seamlessly into your application. Users can submit forms directly from your application without being redirected to external pages.
 
-First,
+The main component `<formsflow-webembed></formsflow-webembed>` is a flexible web component that adapts to different authentication scenarios and can be easily integrated into any frontend framework.
 
-        configFile = {
-	        authenticationType : 'anonymous',
-		formioUrl: '',
-            webApiUrl : ''
-        }
-      
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- | 
-| ```authenticationType``` | String |The preferred type of authentication | anonymous |
-| ```formioUrl``` | String | formio url (```/form``` is mandatory after formio url) | eg : 'https://sample.com/formio/form' | 
-| ```webApiUrl``` | String | Api url | eg : 'https://sample.com/api' |
+## 📦 Installation
 
-Second,
+You can integrate the web component using either CDN or NPM:
 
-	anonymousUrl
-	
-	
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- | 
-| ```anonymousUrl``` | String |The anonymous url from formio | eg : 'https://sample.com/formio/formname' |
+### CDN Installation
+```html
+<script src="https://dm3cs41qneo90.cloudfront.net/forms-flow-webcomponent.js"></script>
+```
 
-Third,
-	
-	message
-	
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- | 
-| ```message``` | String |The message after successful submission of form | eg : Thank you for your response |	
+### NPM Installation
+```bash
+npm i formsflow-webembed
+```
 
-eg :
+```javascript
+// Import in your component
+import 'formsflow-webembed'
+```
 
-      <formsflow-wc
-      configFile
-      anonymousUrl="https://sample.com/form/formio/test-form"
-      message ="Thank you for your Response"
-      >
-      </formsflow-wc> 
-      
+## 🎨 Required CSS Dependencies
 
-Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
+Include these stylesheets for proper component styling:
 
-eg:
+### Bootstrap CSS
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+```
+> **Note:** Skip this if your application already uses Bootstrap.
 
-    const configFile = {
-    authenticationType : "anonymous",
+### Form.io CSS (Required)
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/formiojs@4.13.1/dist/formio.full.min.css">
+```
+
+## 🚀 Usage Scenarios
+
+The component supports three main scenarios based on your authentication requirements:
+
+---
+
+## 1. Anonymous Forms
+
+Use this scenario when you want to embed forms that don't require user authentication.
+
+### Implementation
+
+```html
+<formsflow-webembed
+    configFile
+    anonymousUrl="https://sample.com/form/formio/test-form"
+    message="Thank you for your response"
+>
+</formsflow-webembed>
+```
+
+### Configuration
+
+The component accepts three parameters:
+
+#### 1. configFile (Object)
+
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `authenticationType` | String | Authentication type | `"anonymous"` |
+| `formioUrl` | String | Form.io URL (must end with `/form`) | `"https://sample.com/formio/form"` |
+| `webApiUrl` | String | API URL | `"https://sample.com/api"` |
+
+#### 2. anonymousUrl (String)
+
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `anonymousUrl` | String | The anonymous form URL from Form.io | `"https://sample.com/formio/formname"` |
+
+#### 3. message (String)
+
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `message` | String | Success message after form submission | `"Thank you for your response"` |
+
+### JavaScript Configuration
+
+```javascript
+const configFile = {
+    authenticationType: "anonymous",
     formioUrl: 'https://sample.com/formio/form',
-    webApiUrl: 'https://sample.com/api',
-    }
-    document.querySelector('formsflow-wc').setAttribute('configFile',JSON.stringify(configFile))
+    webApiUrl: 'https://sample.com/api'
+}
 
+document.querySelector('formsflow-webembed')
+    .setAttribute('configFile', JSON.stringify(configFile));
+```
 
-**2. Authenticated Forms (Internal)**
+---
 
-AuthenticationType ‘internal’ means the parent application (the application where the webcomponent is implemented) will be using keycloak for authentication.
+## 2. Authenticated Forms (Internal)
 
-**Step 1**
- 
- Add the below mentioned webcomponent to your html file :
- 
- 	   <formsflow-wc
-	       configFile
-           formName = ''
-	       message = ''
-        >
-        </formsflow-wc>
+Use this scenario when your parent application uses Keycloak for authentication.
 
-Here, the webcomponent will accept three parameters :
+### Implementation
 
-First,
+```html
+<formsflow-webembed
+    configFile
+    formName="test-form"
+    message="Thank you for your response"
+>
+</formsflow-webembed>
+```
 
-        configFile = {
-            keycloakUrl : '',
-	        realm : '',
-	        clientId : '',
-	        authenticationType : 'internal',
-            webApiUrl : ''
-        }
-	
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- |
-| ```keycloakUrl``` | String | keycloak  url | eg : 'https://sample.com/auth' |
-| ```realm``` | String | keycloak realm | eg : sample |
-| ```clientId``` | String | keycloak client id | eg : tenant-clientId |
-| ```authenticationType``` | String | The preferred type of authentication | internal |
-| ```webApiUrl``` | String | Api url | eg : 'https://sample.com/api' |
+### Configuration
 
-second,
-	
-	formName
-	
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- |
-| ```formName``` | String | pathname of form | eg : testform |
+#### 1. configFile (Object)
 
-In case of multitenancy, path name should contain tenant key (tenantkey-pathname)
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `keycloakUrl` | String | Keycloak server URL | `"https://sample.com/auth"` |
+| `realm` | String | Keycloak realm name | `"sample"` |
+| `clientId` | String | Keycloak client ID | `"tenant-clientId"` |
+| `authenticationType` | String | Authentication type | `"internal"` |
+| `webApiUrl` | String | API URL | `"https://sample.com/api"` |
 
-Third,
-	
-	message
-	
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- | 
-| ```message``` | String |The message after successful submission of form | eg : Thank you for your response |	
+#### 2. formName (String)
 
-eg :
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `formName` | String | Form pathname | `"testform"` |
 
-    <formsflow-wc
-       configFile
-       formName = 'test-form'
-       message = 'Thank you for your response'
-    >
-    </formsflow-wc> 
+> **Note:** For multitenancy, use format: `"tenantkey-pathname"`
 
-Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
+#### 3. message (String)
 
-eg:
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `message` | String | Success message after form submission | `"Thank you for your response"` |
 
-      const configFile = {
-      keycloakUrl : 'https://sample.com/auth',
-      realm : 'test',
-      clientId : 'testId',
-      authenticationType : 'internal',
-      webApiUrl : 'https://sample.com/api'
-  }
-  
-  document.querySelector('formsflow-wc').setAttribute('configFile',JSON.stringify(configFile));
-  
+### JavaScript Configuration
 
-**Authenticated Forms (External)**
+```javascript
+const configFile = {
+    keycloakUrl: 'https://sample.com/auth',
+    realm: 'test',
+    clientId: 'testId',
+    authenticationType: 'internal',
+    webApiUrl: 'https://sample.com/api'
+};
 
-AuthenticationType ‘external’ means the parent application(the application where the webcomponent is used) is not using keycloak for authentication.
+document.querySelector('formsflow-webembed')
+    .setAttribute('configFile', JSON.stringify(configFile));
+```
 
-**Step 1**
+---
 
-Add the below mentioned webcomponent to your html file :
- 
- 	   <formsflow-wc
-	       configFile
-           formName = ''
-           token = ''  
-	       message = ''
-        >
-        </formsflow-wc>
+## 3. Authenticated Forms (External)
 
-Here, the webcomponent will accept four parameters :
+Use this scenario when your parent application does NOT use Keycloak for authentication.
 
-First,
+### Implementation
 
-	configFile = {
-	        authenticationType : 'external',
-            webApiUrl : ''
-        }
+```html
+<formsflow-webembed
+    configFile
+    formName="test-form"
+    token="your-jwt-token-here"
+    message="Thank you for your response"
+>
+</formsflow-webembed>
+```
 
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- | 
-| ```authenticationType``` | String |The preferred type of authentication | external  |
-| ```webApiUrl``` | String | Api url | eg : 'https://sample.com/api' |
+### Configuration
 
-second,
-	
-	formName
-	
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- |
-| ```formName``` | String | pathname of form | eg : testform |
+#### 1. configFile (Object)
 
-In case of multitenancy, path name should contain tenant key (tenantkey-pathname)
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `authenticationType` | String | Authentication type | `"external"` |
+| `webApiUrl` | String | API URL | `"https://sample.com/api"` |
 
-Third,
+#### 2. formName (String)
 
-	token
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `formName` | String | Form pathname | `"testform"` |
 
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- |
-| ```token``` | String | jwt token which created by the shared secret of formsflow |eg : "eikjndsf2ediuhiugyugyugg" |
+> **Note:** For multitenancy, use format: `"tenantkey-pathname"`
 
-Note : 
-*  For normal case, the token should be created by encoding the preferred_username and email. 
-   * eg: { preferred_username : 'sample' , email : 'sample@gmail.com'}
-*  For multitenancy, tenant key should be added along with preferred_username and email
-   * eg : { preferred_username : 'sample' , email : 'sample@gmail.com' , tenantKey : 'tenant1'}
- 
-Fourth,
-	
-	message
-	
-|  Variable Name       | Type  | Description  | Possible Values  |
-| -------------------- | ----- | -----------  |---------------- | 
-| ```message``` | String |The message after successful submission of form | eg : Thank you for your response |	
+#### 3. token (String)
 
-eg :
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `token` | String | JWT token created using Forms Flow shared secret | `"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."` |
 
-     <formsflow-wc
-       configFile
-       formName = 'test-form'
-       token = 'e11jsijuihsiuhsuhiushuisjsoijiosjos88skmsiuhsuihsiuhyusguysguyshyusgyusgyusg'  
-       message = 'Thank you for your response'
-    >
-    </formsflow-wc>
+#### Token Payload Requirements
 
-Replace and add the config file according to your environment. Convert the config file to string using stringify or other methods in javascript.
+**Standard Case:**
+```json
+{
+    "preferred_username": "sample",
+    "email": "sample@gmail.com"
+}
+```
 
-eg:
+**Multitenancy Case:**
+```json
+{
+    "preferred_username": "sample",
+    "email": "sample@gmail.com",
+    "tenantKey": "tenant1"
+}
+```
 
-          configFile = {
-           authenticationType : 'external',
-           webApiUrl : 'https://sample.com/api'
-          }
-	  
-	  document.querySelector('formsflow-wc').setAttribute('configFile',JSON.stringify(configFile));
+#### 4. message (String)
 
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `message` | String | Success message after form submission | `"Thank you for your response"` |
 
+### JavaScript Configuration
 
+```javascript
+const configFile = {
+    authenticationType: 'external',
+    webApiUrl: 'https://sample.com/api'
+};
 
-***To add custom components in form embedding*** 
+document.querySelector('formsflow-webembed')
+    .setAttribute('configFile', JSON.stringify(configFile));
+```
 
- **Step 1**
- 
-* Clone the repo forms-flow-ai-web-components
- 
-       git clone https://github.com/AOT-Technologies/forms-flow-ai-web-components.git
-       
- **Step 2**
-  
-* install node modules
+---
 
-      npm install
-      
- note : if you dont need our formsflow custom component you can remove it from the package
- 
- eg : 
-  
-     npm uninstall formsflow-formio-custom-elements
-     
- **Step 3** 
- 
-* install npm package for custom component
+## 🔧 Custom Components
 
- eg : 
-  
-       npm i forms-flow-custom-component
- 
- **Step 4**
- 
-* import custom component from the package
+To add custom components to your form embedding solution:
 
- eg : 
- 
- 	import formsFlowCustomComponent from 'forms-flow-custom-component'
+### Step 1: Clone the Repository
 
- **Step 5**
- 
- * use the imported custom component in formio
- 
- eg :  
-  
-        Formio.use(formsFlowCustomComponent)
-	
-note : 
- * you can create a build by running the command 
- 
- 	   npm run build
-	
-* And you can host this build file as cdn and you can use that cdn for form embedding.	
-	
-	
-you can reffer https://github.com/AOT-Technologies/forms-flow-ai-web-components	
-	
-	
-	
-        
-        
-        
+```bash
+git clone https://github.com/AOT-Technologies/forms-flow-ai-web-components.git
+cd forms-flow-ai-web-components
+```
+
+### Step 2: Install Dependencies
+
+```bash
+npm install
+```
+
+> **Optional:** Remove default Forms Flow custom components if not needed:
+> ```bash
+> npm uninstall formsflow-formio-custom-elements
+> ```
+
+### Step 3: Install Your Custom Component Package
+
+```bash
+npm install your-custom-component-package
+```
+
+### Step 4: Import Custom Component
+
+```javascript
+import yourCustomComponent from 'your-custom-component-package';
+```
+
+### Step 5: Register with Form.io
+
+```javascript
+import { Formio } from 'formiojs';
+
+Formio.use(yourCustomComponent);
+```
+
+### Step 6: Build and Deploy
+
+```bash
+# Create production build
+npm run build
+
+# The build files will be in the /build directory
+# Host these files as a CDN for form embedding
+```
+
+---
+
+## 📚 API Reference
+
+### Component Properties
+
+| Property | Required | Type | Scenarios | Description |
+|----------|----------|------|-----------|-------------|
+| `configFile` | ✅ | Object | All | Configuration object (as JSON string) |
+| `anonymousUrl` | ✅ | String | Anonymous only | Form.io anonymous form URL |
+| `formName` | ✅ | String | Internal, External | Form pathname |
+| `token` | ✅ | String | External only | JWT authentication token |
+| `message` | ✅ | String | All | Success message after submission |
+
+### Authentication Types
+
+| Type | Description | Use Case |
+|------|-------------|----------|
+| `anonymous` | No authentication required | Public forms |
+| `internal` | Keycloak authentication | Applications using Keycloak |
+| `external` | Custom JWT authentication | Applications with custom auth |
+
+---
+
+## 🔗 Additional Resources
+
+- **GitHub Repository:** [forms-flow-ai-web-components](https://github.com/AOT-Technologies/forms-flow-ai-web-components)
+- **CDN Distribution:** https://dm3cs41qneo90.cloudfront.net/
+- **Form.io Documentation:** [formio.github.io](https://formio.github.io/)
+
+---
+
+## 📝 Notes
+
+- Ensure all URLs are properly configured for your environment
+- Convert configuration objects to JSON strings when setting attributes
+- For multitenancy support, include tenant keys in form names and tokens
+- Test authentication flows in development before deploying to production
+
+---
+
+**Need help?** Check out our [GitHub repository](https://github.com/AOT-Technologies/forms-flow-ai-web-components) for more examples and community support.
