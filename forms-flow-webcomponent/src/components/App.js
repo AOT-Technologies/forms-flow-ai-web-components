@@ -20,12 +20,12 @@ const App = () => {
   useEffect(() => {
     setConfigFile(
       JSON.parse(
-        document.querySelector("formsflow-wc").getAttribute("configFile")
+        document.querySelector("formsflow-webembed").getAttribute("configFile")
       )
     );
-    setJwt(document.querySelector("formsflow-wc").getAttribute("token"));
+    setJwt(document.querySelector("formsflow-webembed").getAttribute("token"));
     setFormName(
-      document.querySelector("formsflow-wc").getAttribute("formName")
+      document.querySelector("formsflow-webembed").getAttribute("formName")
     );
   }, []);
 

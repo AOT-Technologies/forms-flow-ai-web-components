@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form,Formio} from "react-formio";
+import { Form,Formio} from "@aot-technologies/formio-react";
 import {
   publicApplicationCreate,
   externalApplicationCreate,
@@ -15,18 +15,18 @@ function RenderForms(props) {
   const [isFormSubmitted, setIsFormsubmitted] = useState(false);
   const [message, setMessage] = useState("");
   const [anonymousUrl, setAnonymousUrl] = useState(null);
-  const [authToken, setAuthToken] = useState(null);
+  const [AUTH_TOKEN, setAUTH_TOKEN] = useState(null);
   const [errorText, setErrorText] = useState(null);
 
 
   useEffect(() => {
-    setMessage(document.querySelector("formsflow-wc").getAttribute("message"));
-    setAuthToken(document.querySelector("formsflow-wc").getAttribute("token"));
+    setMessage(document.querySelector("formsflow-webembed").getAttribute("message"));
+    setAUTH_TOKEN(document.querySelector("formsflow-webembed").getAttribute("token"));
   }, []);
 
   useEffect(() => {
     setAnonymousUrl(
-      document.querySelector("formsflow-wc").getAttribute("anonymousUrl")
+      document.querySelector("formsflow-webembed").getAttribute("anonymousUrl")
     );
   }, [anonymous]);
 
@@ -57,7 +57,7 @@ function RenderForms(props) {
     if (!anonymous && configFile.authenticationType === "external") {
       externalApplicationCreate(
         externalApplicationCreateUrl,
-        authToken,
+        AUTH_TOKEN,
         { data: data.data, formId: formData._id })
         .then((res) => {
         if (res.data) {
