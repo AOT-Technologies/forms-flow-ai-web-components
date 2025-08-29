@@ -1,6 +1,6 @@
 {
-  "name": "formsflow-webembed",
-  "version": "1.0.1",
+  "name": "@aot-technologies/formsflow-web-embed",
+  "version": "1.1.0",
   "description": "Forms Flow AI Web Component - A React-based web component for form rendering and management",
   "main": "dist/forms-flow-webcomponent.js",
   "files": [
@@ -21,6 +21,13 @@
     "type": "git",
     "url": ""
   },
+  "bugs": {
+    "url": "https://github.com/aot-technologies/forms-flow-ai-web-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://aot-technologies.github.io/forms-flow-ai-web-components/",
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
