@@ -13,24 +13,24 @@ on:
 
 jobs:
   setup-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: "true"
 
   # linting:
   #   needs: setup-job
-  #   runs-on: ubuntu-20.04
+  #   runs-on: ubuntu-latest
 
   #   strategy:
   #     matrix:
-  #       node-version: [16]
+  #       node-version: [18]
 
   #   steps:
-  #     - uses: actions/checkout@v2
+  #     - uses: actions/checkout@v4
   #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v1
+  #       uses: actions/setup-node@v4
   #       with:
   #         node-version: ${{ matrix.node-version }}
   #     - name: Install dependencies
@@ -41,16 +41,16 @@ jobs:
   #         npm run lint
 #   unit-tests:
 #     needs: setup-job
-#     runs-on: ubuntu-20.04
+#     runs-on: ubuntu-latest
 
 #     strategy:
 #       matrix:
-#         node-version: [14]
+#         node-version: [18]
 
 #     steps:
-#       - uses: actions/checkout@v2
+#       - uses: actions/checkout@v4
 #       - name: Use Node.js ${{ matrix.node-version }}
-#         uses: actions/setup-node@v1
+#         uses: actions/setup-node@v4
 #         with:
 #           node-version: ${{ matrix.node-version }}
 #       - name: Install dependencies
@@ -62,12 +62,16 @@ jobs:
 #           npm test a
   build-check:
     needs: setup-job
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Build to check strictness
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
