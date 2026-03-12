@@ -27,7 +27,7 @@ You can integrate the web component using either CDN or NPM:
 
 ### CDN Installation
 ```html
-<script src="https://dm3cs41qneo90.cloudfront.net/forms-flow-webcomponent.js"></script>
+<script src="https://dm3cs41qneo90.cloudfront.net"></script>
 ```
 
 ### NPM Installation
