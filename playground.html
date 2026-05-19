@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormsFlow Web Component Playground</title>
+    <!-- Required CSS Dependencies -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/formiojs@4.13.1/dist/formio.full.min.css">
+    <script src="https://dm3cs41qneo90.cloudfront.net"></script>
+</head>
+<body>
+    <!-- CDN Installation for the Web Component -->
+
+    <div class="container mt-5">
+        <h2>Anonymous Form Submission</h2>
+        <!-- anonymousUrl="https://forms-flow-web-qamulti.aot-technologies.com/public/form/devtest-anonymousjobform" -->
+        <!-- Web Component implementation for anonymous forms -->
+        <formsflow-webembed 
+ 
+            anonymousUrl="https://forms-flow-web-qamulti.aot-technologies.com/formio/form/6a02c3e4affe0d057928cb9d"
+            message="Thank you for your response">
+        </formsflow-webembed>
+        ss
+    </div>
+
+
+    <!-- JavaScript Configuration -->
+    <script>
+        const configFile = { 
+            authenticationType: "anonymous", 
+            formioUrl: 'https://forms-flow-web-qamulti.aot-technologies.com/formio', 
+            webApiUrl: 'https://forms-flow-web-qamulti.aot-technologies.com/webapi' 
+        }; 
+        document.querySelector('formsflow-webembed').setAttribute('configFile', JSON.stringify(configFile));
+    </script>
+</body>
+</html>

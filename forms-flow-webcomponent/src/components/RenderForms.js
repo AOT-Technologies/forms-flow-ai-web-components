@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Form,Formio} from "@aot-technologies/formio-react";
+import { Form,Components} from "@aot-technologies/formio-react";
 import {
   publicApplicationCreate,
   externalApplicationCreate,
   internalApplicationCreate,
 } from "../apiManager/services/appService";
 import LoadError from "./LoadError";
-import FormioCustomEx from "formsflow-formio-custom-elements/dist/customformio-ex";
-
+// import FormioCustomEx from "@aot-technologies/formsflow-formio-custom-elements/dist/customformio-ex";
+// Set custom formio elements - Code splitted
+import(
+  "@aot-technologies/formsflow-formio-custom-elements/dist/customformio-ex"
+).then((FormioCustomEx) => {
+  Components.setComponents(FormioCustomEx.components);
+});
 
 function RenderForms(props) {
-  Formio.use(FormioCustomEx);
+  // Formio.use(FormioCustomEx);
   let { configFile, formData, anonymous } = props;
   const [isFormSubmitted, setIsFormsubmitted] = useState(false);
   const [message, setMessage] = useState("");
@@ -73,6 +78,7 @@ function RenderForms(props) {
       const formId = data.form;
       const submissionId = data._id;
       // Form submission url for application create api
+      console.log("configFile", configFile);
       const formUrl = `${configFile.formioUrl}/${formId}/submission/${submissionId}`;
       const webFormUrl = `${configFile.webBaseUrl}/submission/${submissionId}`;
       const formData = {

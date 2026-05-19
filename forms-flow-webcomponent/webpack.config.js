@@ -78,10 +78,7 @@ module.exports = {
     historyApiFallback: true,
   },
   externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
-    "keycloak-js": "Keycloak",
-    "@aot-technologies/formio-react": "FormioReact",
-    axios: "axios", 
+    "keycloak-js": { commonjs: "keycloak-js", commonjs2: "keycloak-js", amd: "keycloak-js", root: "Keycloak" },
+    axios: { commonjs: "axios", commonjs2: "axios", amd: "axios", root: "axios" },
   },
 };

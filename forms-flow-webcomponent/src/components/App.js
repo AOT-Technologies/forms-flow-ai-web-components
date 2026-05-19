@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Formio } from "@aot-technologies/formio-react";
 import {
   getExternalAuthourizedForm,
   getInternalAUthorizedForms,
@@ -18,15 +19,12 @@ const App = () => {
 
   // To set config file data and other parameters to state at initial time
   useEffect(() => {
-    setConfigFile(
-      JSON.parse(
-        document.querySelector("formsflow-webembed").getAttribute("configFile")
-      )
-    );
-    setJwt(document.querySelector("formsflow-webembed").getAttribute("token"));
-    setFormName(
-      document.querySelector("formsflow-webembed").getAttribute("formName")
-    );
+    const el = document.querySelector("formsflow-webembed");
+    const config = JSON.parse(el.getAttribute("configFile"));
+    Formio.setBaseUrl(config.formioUrl);
+    setConfigFile(config);
+    setJwt(el.getAttribute("token"));
+    setFormName(el.getAttribute("formName"));
   }, []);
 
   // To Verify token and get form json data form backend
